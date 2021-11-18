@@ -9,45 +9,49 @@ and to build the docs.
 _version_major = 0
 _version_minor = 1
 _version_micro = 0
-_version_extra = 'dev0'
+_version_extra = "dev0"
 # _version_extra = ''
 
 # Format expected by setup.py and doc/conf.py: string of form "X.Y.Z"
-__version__ = '%s.%s.%s.%s' % (_version_major,
-                               _version_minor,
-                               _version_micro,
-                               _version_extra)
+__version__ = "%s.%s.%s.%s" % (
+    _version_major,
+    _version_minor,
+    _version_micro,
+    _version_extra,
+)
 
-classifiers = ['Development Status :: 3 - Alpha',
-               'Intended Audience :: Science/Research',
-               'Programming Language :: Python :: 3',
-               'Topic :: Scientific/Engineering',
-               'Topic :: Scientific/Engineering :: Neuroimaging']
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Scientific/Engineering :: Neuroimaging",
+]
 
-description = 'braintransform event issue to project data transformation tool.'
+description = "braintransform event issue to project data transformation tool."
 
-keywords = 'Event project requirement-contributor request matching toolkit'
+keywords = "Event project requirement-contributor request matching toolkit"
 
 # Main setup parameters
-NAME = 'braintransform'
-MAINTAINER = 'brainhack'
-MAINTAINER_EMAIL = ''
+NAME = "braintransform"
+MAINTAINER = "brainhack"
+MAINTAINER_EMAIL = ""
 DESCRIPTION = description
-URL = 'https://github.com/brainhackorg/braintransform'
-DOWNLOAD_URL = ''
-BUG_TRACKER = 'https://github.com/brainhackorg/braintransform/issues'
-DOCUMENTATION = ''
-SOURCE_CODE = 'https://github.com/brainhackorg/braintransform'
-LICENSE = ''
+URL = "https://github.com/brainhackorg/braintransform"
+DOWNLOAD_URL = ""
+BUG_TRACKER = "https://github.com/brainhackorg/braintransform/issues"
+DOCUMENTATION = ""
+SOURCE_CODE = "https://github.com/brainhackorg/braintransform"
+LICENSE = ""
 CLASSIFIERS = classifiers
 KEYWORDS = keywords
-AUTHOR = 'brainhack'
-AUTHOR_EMAIL = 'brainhackorg@gmail.com'
-PLATFORMS = ''
+AUTHOR = "brainhack"
+AUTHOR_EMAIL = "brainhackorg@gmail.com"
+PLATFORMS = ""
 MAJOR = _version_major
 MINOR = _version_minor
 MICRO = _version_micro
-ISRELEASE = _version_extra == ''
+ISRELEASE = _version_extra == ""
 VERSION = __version__
-PROVIDES = ['braintransform']
-REQUIRES = ['regex', 'requests']
+PROVIDES = ["braintransform"]
+REQUIRES = ["regex", "requests"]
