@@ -2,7 +2,7 @@
 
 [![Build Status](https://github.com/brainhackorg/braintransform/workflows/test,%20package/badge.svg)](https://github.com/brainhackorg/braintransform/actions?query=workflow%3A%22test%2C+package%22+branch%3Amain)
 
-Project issue to website data transformation toolkit .
+Project issue to website data transformation toolkit.
 
 ## Introduction
 
@@ -16,7 +16,7 @@ to fill the contents of the project page.
 
 The automation of the project page generation can be seen in the
 `.github/workflows/issue-to-page.yml` GitHub workflow of the
-[Brainhack Global 2021 repository](Brainhack Global 2021).
+[Brainhack Global 2021 repository](https://github.com/brainhackorg/global2021).
 
 This tool was introduced for the Brainhack Global 2020, and was refactored and
 moved into a separate repository for the Brainhack Global 2021.
