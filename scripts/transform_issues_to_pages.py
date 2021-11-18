@@ -6,7 +6,9 @@ Convert relevant issue data to Markdown files so that they can be used to
 populate the website project section.
 
 Usage:
-> python issues_to_pages.py "https://api.github.com/repos/brainhackorg/global2021/issues?per_page=100" "content/project"
+> python issues_to_pages.py \
+    "https://api.github.com/repos/brainhackorg/global2021/issues?per_page=100" \
+    "content/project"  # noqa: E501
 
 """
 
@@ -25,13 +27,13 @@ from braintransform.issues_to_pages import (
 def _build_arg_parser():
 
     parser = argparse.ArgumentParser(
-        formatter_class=argparse.RawTextHelpFormatter,
-        description=__doc__)
+        formatter_class=argparse.RawTextHelpFormatter, description=__doc__
+    )
 
     parser.add_argument("url", help="URL where to fetch issues.")
     parser.add_argument(
         "path",
-        help="Path where to write relevant issue data to Markdown files."
+        help="Path where to write relevant issue data to Markdown files.",
     )
 
     return parser

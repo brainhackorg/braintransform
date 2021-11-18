@@ -6,7 +6,7 @@
 class Bunch(object):
     def __init__(self, info):
         for key, name in info.items():
-            if key.startswith('__'):
+            if key.startswith("__"):
                 continue
             self.__dict__[key] = name
 
@@ -28,7 +28,7 @@ def read_vars_from(info_file):
 
     # Use exec for compatibility with Python 3
     info = {}
-    with open(info_file, 'rt') as fobj:
+    with open(info_file, "rt") as fobj:
         exec(fobj.read(), info)
 
     return Bunch(info)

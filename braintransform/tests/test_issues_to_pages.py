@@ -24,17 +24,21 @@ from braintransform.issues_to_pages import (
     save_project_data,
 )
 
-project_keys = sorted([
-    "Title",
-    "link_to_issue",
-    "issue_number",
-    "labels",
-    "content",
-    "project_url",
-    "project_description",
-])
+project_keys = sorted(
+    [
+        "Title",
+        "link_to_issue",
+        "issue_number",
+        "labels",
+        "content",
+        "project_url",
+        "project_description",
+    ]
+)
 
-url = "https://api.github.com/repos/brainhackorg/global2021/issues?per_page=100"
+url = (
+    "https://api.github.com/repos/brainhackorg/global2021/issues?per_page=100"
+)
 
 
 @pytest.fixture
@@ -81,8 +85,16 @@ def test_get_issue_data():
     label_keys = ["color", "description", "name"]
     if issues and api_rate_exceeded_issue_key not in issues[0].keys():
         assert [isinstance(elem, dict) for elem in issues]
-        assert [True if key in issue_keys else False for elem in issues for key in elem.keys()]
-        assert [True if key in label_keys else False for elem in issues for key in elem["labels"]]
+        assert [
+            True if key in issue_keys else False
+            for elem in issues
+            for key in elem.keys()
+        ]
+        assert [
+            True if key in label_keys else False
+            for elem in issues
+            for key in elem["labels"]
+        ]
 
 
 def test_filter_issues_on_state(issue_data):
@@ -91,7 +103,9 @@ def test_filter_issues_on_state(issue_data):
     value = "open"
     filtered_issues = filter_issues_on_state(issues, value)
 
-    expected_open_issues = [issue for issue in issues if issue["state"] == value]
+    expected_open_issues = [
+        issue for issue in issues if issue["state"] == value
+    ]
 
     assert filtered_issues == expected_open_issues
 
@@ -102,7 +116,12 @@ def test_filter_issues_on_label_name(issue_data):
     value = "status:published"
     filtered_issues = filter_issues_on_label_name(issues, value)
 
-    expected_open_issues = [issue for issue in issues for label in issue["labels"] if label["name"] == value]
+    expected_open_issues = [
+        issue
+        for issue in issues
+        for label in issue["labels"]
+        if label["name"] == value
+    ]
 
     assert filtered_issues == expected_open_issues
 
@@ -177,7 +196,9 @@ def test_find_project_description():
     """
     obtained_target = find_project_description(text)
 
-    expected_target = "\n\n    The project description is a short text.\n\n    "
+    expected_target = (
+        "\n\n    The project description is a short text.\n\n    "
+    )
     assert obtained_target == expected_target
 
     text = """### Description
@@ -220,7 +241,11 @@ def test_gather_website_project_data(issue_data):
 
     assert len(obtained_project_data) == len(issues)
 
-    assert [True if sorted(list(obtained_project_data.values())[0]) == project_keys else False]
+    assert [
+        True
+        if sorted(list(obtained_project_data.values())[0]) == project_keys
+        else False
+    ]
 
     # Check the file contents
     obt_proj_4_fname = TEST_FILES["expected_project_4_file"]
@@ -244,7 +269,11 @@ def test_save_project_data(tmp_path, issue_data):
 
     # Check the number of files written
     expected_file_count = len(issues)
-    obtained_file_count = sum(1 for item in os.listdir(tmp_path) if os.path.isfile(os.path.join(tmp_path, item)))
+    obtained_file_count = sum(
+        1
+        for item in os.listdir(tmp_path)
+        if os.path.isfile(os.path.join(tmp_path, item))
+    )
 
     assert obtained_file_count == expected_file_count
 

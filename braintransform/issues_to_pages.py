@@ -46,9 +46,8 @@ def check_issue_data_request(response):
 
     if response.status_code != 200:
         print(
-            "Cannot continue: no issues found or request for issues unsuccessful.\nResponse:\n".format(
-                response
-            )
+            "Cannot continue: no issues found or request for issues "
+            "unsuccessful.\nResponse:\n".format(response)
         )
         success = False
 
@@ -115,7 +114,10 @@ def filter_issues_on_label_name(issues, value):
     """
 
     filtered_issues = [
-        issue for issue in issues for label in issue["labels"] if label["name"] == value
+        issue
+        for issue in issues
+        for label in issue["labels"]
+        if label["name"] == value
     ]
 
     return filtered_issues
@@ -138,7 +140,8 @@ def get_gh_label_data(issue):
     labels = dict({"labels": []})
 
     for label in issue["labels"]:
-        # TODO: Implement some conditionals to filter out irrelevant labels that we created. For now, HUGO can discard them.
+        # TODO: Implement some conditionals to filter out irrelevant labels
+        # that we created. For now, HUGO can discard them.
         label_name = label["name"]
         label_description = label["description"]
         label_color = label["color"]
@@ -167,16 +170,15 @@ def find_project_link(text):
     """
 
     # Get the body of the relevant section
-    pattern = "(?<=### Link to project repository/sources)[^###]*"
+    pattern = r"(?<=### Link to project repository/sources)[^###]*"
     form_target = find_target(pattern, text)
 
     target = None
     if form_target:
         # Get the URLs
-        pattern = "((http|https)\:\/\/)?[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z]){2,6}([a-zA-Z0-9\.\&\/\?\:@\-_=#])*"
+        pattern = r"((http|https)\:\/\/)?[a-zA-Z0-9\.\/\?\:@\-_=#]+\.([a-zA-Z]){2,6}([a-zA-Z0-9\.\&\/\?\:@\-_=#])*"  # noqa: E501
         target = find_target(
-            pattern,
-            form_target.replace("\n", "").replace("\r", "")
+            pattern, form_target.replace("\n", "").replace("\r", "")
         )
 
     return target
@@ -197,7 +199,7 @@ def find_project_description(text):
 
     """
 
-    pattern = "(?<=### Project Description)[^###]*"
+    pattern = r"(?<=### Project Description)[^###]*"
     target = find_target(pattern, text, flags=re.DOTALL)
 
     return target
@@ -331,7 +333,9 @@ def save_project_data(website_project_data, path):
     for project in website_project_data.items():
 
         file_rootname = (
-            website_project_fname_label + underscore + str(project[1]["issue_number"])
+            website_project_fname_label
+            + underscore
+            + str(project[1]["issue_number"])
         )
         file_basename = file_rootname + extension_sep + md_extension
         fname = os.path.join(path, file_basename)
